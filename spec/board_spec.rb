@@ -1,7 +1,7 @@
 require 'spec_helper'
 require_relative '../lib/board'
 
-RSpec.describe "TicTacToeTest", :type => :request do
+RSpec.describe "TicTacToe-BoardTest", :type => :request do
   describe "Board" do
     let(:board){Board.new}
 
