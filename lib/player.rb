@@ -1,8 +1,8 @@
 class Player
-  attr_reader :token
+  attr_reader :marker
 
-  # Token is "X" or "O"
-  def initialize(token)
-    @token = token
+  # Marker is "X" or "O"
+  def initialize(marker)
+    @marker = marker
   end
 end
