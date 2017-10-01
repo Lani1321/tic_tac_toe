@@ -37,6 +37,7 @@ class Board
     cells.flatten.count{|marker| marker == "X" || marker == "O"}
   end
 
+  # TODO: optimize this to variable grid
   def update(input, player)
     if input == "1" 
       cells[0][input.to_i-1] = player.marker

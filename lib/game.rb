@@ -32,6 +32,7 @@ class Game
     @board.turn_count % 2 == 0 ? @player_1 : @player_2
   end
 
+  # TODO: create another method for other player
   def winner
     if current_player.marker == "X"
       return "O"
@@ -75,11 +76,11 @@ class Game
   end
 
   def won?
-    # Check rows 
+    # Check rows for winning combo 
     @board.cells.each           { |row| return true if row.all? { |sym| sym == "X" } }
     @board.cells.each           { |row| return true if row.all? { |sym| sym == "O" } }
     
-    # Check columns
+    # Check columns for winning combo
     @board.cells.transpose.each { |col| return true if col.all? { |sym| sym == "X" } }
     @board.cells.transpose.each { |col| return true if col.all? { |sym| sym == "O" } }
     
