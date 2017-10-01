@@ -31,6 +31,67 @@ class Game
   def current_player
     @board.turn_count % 2 == 0 ? @player_1 : @player_2
   end
+
+  def winner
+    won? ? @board.cells[@winning_combo[0]] : nil
+  end
+
+  def draw?
+    @board.full? && !won?
+  end
+
+  def over?
+    won? || draw?
+  end
+
+  def play
+    until over?
+      turn
+    end
+    if won? 
+      puts "Congratulations"
+    elsif draw?
+      puts "Cats Game!"
+    end
+  end
+
+  def turn
+    current = current_player
+    current_move = current_player.move(@board)
+    if @board.valid_move?(current_move)
+      @board.update(current_move, current_player)
+      @board.display
+      puts ""
+      puts "Player #{current.marker} made a move."
+      puts ""
+    else 
+      puts "invalid"
+      turn
+    end
+  end
+
+  def won?
+    # Check rows 
+    @board.cells.each           { |row| return true if row.all? { |sym| sym == "X" } }
+    @board.cells.each           { |row| return true if row.all? { |sym| sym == "O" } }
+    
+    # Check columns
+    @board.cells.transpose.each { |col| return true if col.all? { |sym| sym == "X" } }
+    @board.cells.transpose.each { |col| return true if col.all? { |sym| sym == "O" } }
+    
+    # Turn count matters here because at the beginning of a game, these cells are all equal
+    # Check diagonals
+    if @board.turn_count >= 3
+      if @board.cells[0][0] == @board.cells[1][1] && @board.cells[1][1] == @board.cells[2][2] ||
+        @board.cells[2][0] == @board.cells[1][1] && @board.cells[1][1] == @board.cells[0][2]
+          return true 
+      else
+        false
+      end
+    end
+    false
+  end
+
 end
 
 
