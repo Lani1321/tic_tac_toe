@@ -24,5 +24,48 @@ class Board
     end
   end
 
-  
+  def taken?(input)
+    cell = position(input)
+    (cell == "X") || (cell == "O")
+  end
+
+  def valid_move?(input)
+    input.to_i.between?(1,9) && !taken?(input)
+  end
+
+  def turn_count
+    cells.flatten.count{|marker| marker == "X" || marker == "O"}
+  end
+
+  def update(input, player)
+    if input == "1" 
+      cells[0][input.to_i-1] = player.marker
+    elsif input == "2"
+      cells[0][input.to_i-1] = player.marker
+    elsif input == "3"
+      cells[0][input.to_i-1] = player.marker
+      
+    elsif input == "4" 
+      cells[1][input.to_i-4] = player.marker 
+    elsif input == "5"
+      cells[1][input.to_i-4] = player.marker 
+    elsif input == "6"
+      cells[1][input.to_i-4] = player.marker 
+
+    elsif input == "7"
+      cells[2][input.to_i-7] = player.marker
+    elsif input == "8"
+      cells[2][input.to_i-7] = player.marker
+    else
+      cells[2][input.to_i-7] = player.marker
+    end
+  end
+
+  def full?
+    @cells.flatten.all?{|marker| marker == "X" || marker == "O"}
+  end
+
+  def same_values?
+    self.uniq.size == 1
+  end
 end
