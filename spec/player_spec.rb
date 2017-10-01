@@ -5,9 +5,9 @@ RSpec.describe "TicTacToe-PlayerTest", :type => :request do
   
   describe 'Player' do
     describe '#initialize' do
-      it "creates a player with a token" do
+      it "creates a player with a marker" do
         player = Player.new("X")
-        expect(player.token).to eq("X")
+        expect(player.marker).to eq("X")
       end
     end
   end
