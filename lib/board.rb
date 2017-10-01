@@ -64,8 +64,4 @@ class Board
   def full?
     @cells.flatten.all?{|marker| marker == "X" || marker == "O"}
   end
-
-  def same_values?
-    self.uniq.size == 1
-  end
 end
