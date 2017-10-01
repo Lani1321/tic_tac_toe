@@ -15,11 +15,12 @@ class Board
   end
 
   def position(input)
-    if input == "1" || "2" || "3"
+    case input
+    when /(1|2|3)/ 
       @cells[0][input.to_i - 1]
-    elsif input == "4" || "5" || "6"
+    when /(4|5|6)/
       @cells[1][input.to_i - 1]
-    else
+    else 
       @cells[2][input.to_i - 1]
     end
   end
