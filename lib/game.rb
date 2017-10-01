@@ -33,7 +33,11 @@ class Game
   end
 
   def winner
-    won? ? @board.cells[@winning_combo[0]] : nil
+    if current_player.marker == "X"
+      return "O"
+    else
+      return "X"
+    end
   end
 
   def draw?
@@ -49,7 +53,7 @@ class Game
       turn
     end
     if won? 
-      puts "Congratulations"
+      puts "Congratulations Player #{winner}, you won!"
     elsif draw?
       puts "Cats Game!"
     end
