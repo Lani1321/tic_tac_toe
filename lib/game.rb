@@ -12,12 +12,12 @@ class Game
   end
 
   def self.one_player_start
-    puts "Who should go first? Please enter '1' for the human player or '2' for the computer"
-    first_player = gets.strip
-    if first_player == "1"
+    puts "Would you like to be 'X' or 'O'? Please enter '1' for 'X' and '2' for 'O'"
+    player_1 = gets.strip
+    if player_1 == "1"
       puts "You are Player X!"
       self.new(player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"))
-    elsif first_player == "2"
+    elsif player_1 == "2"
       puts "You are Player 0!"
       self.new(player_1 = Players::Computer.new("X"), player_2 = Players::Human.new("O"))
     end
