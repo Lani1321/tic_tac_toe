@@ -92,7 +92,7 @@ class Game
        anti_diagonal.first != ' '
       return anti_diagonal.first
     end
-    nil
+    false
   end
 
   def diagonal_array
@@ -102,7 +102,7 @@ class Game
     (@board.cells.length).times do
       diagonal_array << @board.cells[x][y]
       x += 1
-      y -= 1
+      y += 1
     end
     diagonal_array
   end
@@ -112,7 +112,7 @@ class Game
        diagonal_array.first != ' '
       return diagonal_array.first
     end
-    nil
+    false
   end
 
   def won?
