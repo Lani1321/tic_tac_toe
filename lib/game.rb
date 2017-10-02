@@ -75,6 +75,46 @@ class Game
     end
   end
 
+  def anti_diagonal
+    x = 0
+    y = @board.cells.length - 1
+    anti_diagonal_array = []
+    (@board.cells.length).times do
+      anti_diagonal_array << @board.cells[x][y]
+      x += 1
+      y -= 1
+    end
+    anti_diagonal_array
+  end
+  
+  def anti_diagonal_winner
+    if anti_diagonal.uniq.length == 1 &&
+       anti_diagonal.first != ' '
+      return anti_diagonal.first
+    end
+    nil
+  end
+
+  def diagonal_array
+    x = 0
+    y = @board.cells.length - 3
+    diagonal_array = []
+    (@board.cells.length).times do
+      diagonal_array << @board.cells[x][y]
+      x += 1
+      y -= 1
+    end
+    diagonal_array
+  end
+  
+  def diagonal_winner
+    if diagonal_array.uniq.length == 1 &&
+       diagonal_array.first != ' '
+      return diagonal_array.first
+    end
+    nil
+  end
+
   def won?
 
     # Can't possibly win before turn 5
@@ -89,9 +129,9 @@ class Game
     @board.cells.transpose.each { |col| return true if col.all? { |sym| sym == "O" } }
     
     # Check diagonals
-    if (@board.cells[0][0] == "X" || @board.cells[0][0] == "O") && (@board.cells[0][0] == @board.cells[1][1]) && (@board.cells[1][1] == @board.cells[2][2]) 
+    if diagonal_winner
       return true 
-    elsif (@board.cells[2][0] == "X" || @board.cells[2][0] == "O") && (@board.cells[2][0] == @board.cells[1][1]) && (@board.cells[1][1] == @board.cells[0][2])
+    elsif anti_diagonal_winner
       return true
     end
     false
