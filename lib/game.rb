@@ -76,6 +76,10 @@ class Game
   end
 
   def won?
+
+    # Can't possibly win before turn 5
+    return false if @board.turn_count < 5
+
     # Check rows for winning combo 
     @board.cells.each           { |row| return true if row.all? { |sym| sym == "X" } }
     @board.cells.each           { |row| return true if row.all? { |sym| sym == "O" } }
@@ -84,19 +88,14 @@ class Game
     @board.cells.transpose.each { |col| return true if col.all? { |sym| sym == "X" } }
     @board.cells.transpose.each { |col| return true if col.all? { |sym| sym == "O" } }
     
-    # Turn count matters here because at the beginning of a game, these cells are all equal
     # Check diagonals
-    if @board.turn_count >= 3
-      if @board.cells[0][0] == @board.cells[1][1] && @board.cells[1][1] == @board.cells[2][2] ||
-        @board.cells[2][0] == @board.cells[1][1] && @board.cells[1][1] == @board.cells[0][2]
-          return true 
-      else
-        false
-      end
+    if (@board.cells[0][0] == "X" || @board.cells[0][0] == "O") && (@board.cells[0][0] == @board.cells[1][1]) && (@board.cells[1][1] == @board.cells[2][2]) 
+      return true 
+    elsif (@board.cells[2][0] == "X" || @board.cells[2][0] == "O") && (@board.cells[2][0] == @board.cells[1][1]) && (@board.cells[1][1] == @board.cells[0][2])
+      return true
     end
     false
   end
-
 end
 
 
