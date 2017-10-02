@@ -40,24 +40,11 @@ class Board
 
   # TODO: optimize this to variable grid
   def update(input, player)
-    if input == "1" 
+    case input
+    when /(1|2|3)/ 
       cells[0][input.to_i-1] = player.marker
-    elsif input == "2"
-      cells[0][input.to_i-1] = player.marker
-    elsif input == "3"
-      cells[0][input.to_i-1] = player.marker
-      
-    elsif input == "4" 
-      cells[1][input.to_i-4] = player.marker 
-    elsif input == "5"
-      cells[1][input.to_i-4] = player.marker 
-    elsif input == "6"
-      cells[1][input.to_i-4] = player.marker 
-
-    elsif input == "7"
-      cells[2][input.to_i-7] = player.marker
-    elsif input == "8"
-      cells[2][input.to_i-7] = player.marker
+    when /(4|5|6)/
+      cells[1][input.to_i-4] = player.marker     
     else
       cells[2][input.to_i-7] = player.marker
     end
